@@ -16,15 +16,13 @@
 	npm install -g npm-windows-upgrade
 	npm-windows-upgrade
 ```
-3. Install Install Angular 7
+3. Install Angular 7
 	1. Open powershell as an Administrator
 	2. Type the following commands to install (7.3.2 is the version as of this document)
 ```
 TO INSTALL
 	npm install -g @angular/cli@latest
 ```
-
-
 -OR-
 ```
 TO UPDATE
@@ -36,13 +34,6 @@ TO UPDATE
 4. Install Git (for pulling down completed examples)
     1. [Download](https://git-scm.com/downloads)
     2. Install
-
-## Create and run a new Project
-1. Open Powershell
-2. cd to your source directory
-3. Type the following commands
-```
-	ng new iw-angular-workshop --routing
-	cd iw-angular-workshop
-	ng serve --open
-```
+5. Download dotnet core
+	1. [Download] https://dotnet.microsoft.com/download (minimum of 2.0)
+	2. Install
