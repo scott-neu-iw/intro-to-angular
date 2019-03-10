@@ -37,3 +37,8 @@ TO UPDATE
 5. Download dotnet core
 	1. [Download] https://dotnet.microsoft.com/download (minimum of 2.0)
 	2. Install
+6. Clone the repository
+	1. From a powershell prompt, in the target directory
+```
+	git clone https://github.com/scott-neu-iw/intro-to-angular.git
+```

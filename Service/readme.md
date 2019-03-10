@@ -1,6 +1,3 @@
-# Backend API
-## Installation
-View[https://docs.microsoft.com/en-us/dotnet/core/windows-prerequisites?tabs=netcore21]
 ## Execution
 - Open in Visual Studio and Start
 - Run command line
@@ -8,13 +5,17 @@ View[https://docs.microsoft.com/en-us/dotnet/core/windows-prerequisites?tabs=net
 cd [path]\Iw.Services\Iw.Services.Api
 dotnet run
 ```
+
+## Notes
+This API is an in memory API.  Nothing is stored on disk.  The data set will reset everytime it is run.
+
 ## Endpoints
 
 #### Get All ToDo Items
 Retrieves all the ToDo items
 >Endpoint:
 ```
-GET: /v1/todotitems
+GET: /v1/todoitems
 ```
 >Response:
 ```
@@ -53,7 +54,7 @@ Retrieves a filtered list of the ToDo items
 
 >Endpoint:
 ```
-GET: /v1/todotitems?name={nameFilter}&late={true|false}&pastdue={true|false}&completed={true|false}
+GET: /v1/todoitems?name={nameFilter}&late={true|false}&pastdue={true|false}&completed={true|false}
 ```
 >Response:
 ```
@@ -79,7 +80,7 @@ Retrieves a specific ToDo item
 
 >Endpoint:
 ```
-GET: /v1/todotitems/{id}
+GET: /v1/todoitems/{id}
 ```
 >Response:
 ```
@@ -102,7 +103,7 @@ Creates a new ToDo item
 
 >Endpoint:
 ```
-POST: /v1/todotitems
+POST: /v1/todoitems
 ```
 >Body:
 ```
@@ -135,7 +136,7 @@ Update an existing ToDo item
 
 >Endpoint:
 ```
-PUT: /v1/todotitems/{id}
+PUT: /v1/todoitems/{id}
 ```
 >Body:
 ```
@@ -167,7 +168,7 @@ Delete an existing ToDo item
 
 >Endpoint:
 ```
-DELETE: /v1/todotitems/{id}
+DELETE: /v1/todoitems/{id}
 ```
 >Response: standard HTTP status codes
 
@@ -176,7 +177,7 @@ Completes an existing ToDo item.  The onDate field is optional, if it is not sup
 
 >Endpoint:
 ```
-PATCH: /v1/todotitems/{id}/complete
+PATCH: /v1/todoitems/{id}/complete
 ```
 >Body:
 ```
@@ -202,6 +203,56 @@ PATCH: /v1/todotitems/{id}/complete
 }
 ```
 
+## Version 2 API
+Version 2 of the api has the exact same functions as the Version 1, but they require an Authorization: Bearer <token> in the request header.
+## Additional Endpoints
 
-
-
+#### Login
+Processes a login request
+>Endpoint:
+```
+POST: /v2/authentication/login
+```
+>Body:
+```
+{
+	"username": "test",
+	"password": "qwere"
+}
+```
+>Response:
+```
+{
+  "accessToken": "a jwt token",
+  "expires": 576000
+}
+```
+Fields in the JWT will include:
+```
+	aud: "Todo Services"
+	email: "demo.user@email.com"
+	exp: 1546498519
+	family_name: "User"
+	given_name: "Demo"
+	iat: 1545922519
+	iss: "Iw.Services"
+	jti: "b3c9fada-0dfb-40af-9a54-42101c5494c5"
+	nbf: 1545922519
+	sub: "100"
+	unique_name: "test"
+	user_authorization: "CanView,CanAdd,CanEdit,CanComplete,CanDelete"
+```
+#### Refresh
+Processes a token refresh
+>Endpoint:
+```
+Get: /v2/authentication/token/refresh
+```
+>Body: (none)
+>Response:
+```
+{
+  "accessToken": "a jwt token",
+  "expires": 576000
+}
+```

@@ -17,6 +17,6 @@ namespace Iw.Services.Api.DataModels
       public string CompletedBy { get; set; }
       public bool Completed => CompletedDate.HasValue;
       public bool IsPastDue => !CompletedDate.HasValue && DueDate.HasValue && DueDate.Value < DateTime.Now;
-      public bool IsLate => CompletedDate.HasValue && DueDate.HasValue && CompletedDate.Value > DueDate.Value;
+      public bool IsLate => IsPastDue || (CompletedDate.HasValue && DueDate.HasValue && CompletedDate.Value > DueDate.Value);
    }
 }

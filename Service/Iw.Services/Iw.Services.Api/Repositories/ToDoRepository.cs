@@ -84,7 +84,7 @@ namespace Iw.Services.Api.Repositories
                Name = "First To Do Item",
                Description = "I really need to get this done",
                CreateDate = new DateTime(2018,8,1),
-               DueDate = new DateTime(2018,10,1),
+               DueDate = DateTime.Now.Date.AddMonths(1),
                AssignedTo = "Scott Neu"
             },
             new ToDoItem
@@ -93,7 +93,7 @@ namespace Iw.Services.Api.Repositories
                Name = "Another Really Important Item",
                Description = "Something super important",
                CreateDate = new DateTime(2018,8,3),
-               DueDate = new DateTime(2018,9,15),
+               DueDate = DateTime.Now.Date.AddDays(3),
                AssignedTo = "Ryan Jackson"
             },
             new ToDoItem

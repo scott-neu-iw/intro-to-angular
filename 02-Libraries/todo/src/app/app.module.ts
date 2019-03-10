@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 // import module items
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +18,7 @@ import { AppNavigationComponent } from './components/app-navigation/app-navigati
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     CoreModule,
     TodoModule,
     AppRoutingModule

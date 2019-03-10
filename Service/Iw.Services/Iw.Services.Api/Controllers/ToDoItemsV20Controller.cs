@@ -2,21 +2,22 @@
 using System.Threading.Tasks;
 using Iw.Services.Api.DataModels;
 using Iw.Services.Api.Repositories;
+using Iw.Services.Api.Services;
 using Iw.Services.Api.ViewModels;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // ReSharper disable StringLiteralTypo
 namespace Iw.Services.Api.Controllers
 {
-   [ApiVersion("1.0")]
-   [AllowAnonymous]
+   [ApiVersion("2.0")]
    [Route("v{version:apiVersion}/todoitems")]
-   public class ToDoItemsV10Controller : BaseController
+   public class ToDoItemsV20Controller : AuthenticationController
    {
       private readonly IToDoRepository _toDoRepository;
 
-      public ToDoItemsV10Controller(IToDoRepository toDoRepository)
+      public ToDoItemsV20Controller(IUserRepository userRepository, IAuthenticationService authenticationService, IJwtTokenService tokenService, 
+         IToDoRepository toDoRepository) 
+         : base(userRepository, authenticationService, tokenService)
       {
          _toDoRepository = toDoRepository;
       }
@@ -152,7 +153,7 @@ namespace Iw.Services.Api.Controllers
             else
             {
                item.CompletedDate = req.OnDate ?? DateTime.UtcNow;
-               item.CompletedBy = req.ByUser.Trim();
+               item.CompletedBy = AuthenticatedUser.FullName;
             }
 
             return Ok(await _toDoRepository.Save(item));
