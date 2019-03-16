@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 // import other modules
 import { AppRoutingModule } from './app-routing.module';
+import { ThirdPartyComponentsModule } from './third-party-components/third-party-components.module';
 import { TodoModule } from './todo/todo.module';
 import { CoreModule } from './core/core.module';
 
@@ -19,6 +20,7 @@ import { AppNavigationComponent } from './components/app-navigation/app-navigati
   imports: [
     BrowserModule,
     HttpClientModule,
+    ThirdPartyComponentsModule,
     CoreModule,
     TodoModule,
     AppRoutingModule

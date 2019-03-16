@@ -1,4 +1,5 @@
-Slide 19:
+# Workshop 1 - Links and code snippets
+### Slide 19:
 app-settings.model.ts
 ```
 export interface AppSettings {
@@ -26,7 +27,7 @@ export class AppSettingsService {
   }
 }
 ```
-Slide 22:
+### Slide 22:
 app-navigation.component.ts
 ```
 import { Component, OnInit } from '@angular/core';
@@ -55,10 +56,10 @@ app-navigation.component.html
 </div>>
 <hr>
 ```
-Slide 26:
+### Slide 26:
 https://github.com/scott-neu-iw/intro-to-angular/tree/develop/Service
 
-Slide 27:
+### Slide 27:
 todo-item.model.ts
 ```
 export interface TodoItem {
@@ -75,7 +76,7 @@ export interface TodoItem {
   isLate: boolean;
 }
 ```
-Slide 28:
+### Slide 28:
 todo-data.service.ts
 ```
 import { Injectable } from '@angular/core';
@@ -101,7 +102,7 @@ export class TodoDataService {
   }
 }
 ```
-Slide: 32
+### Slide: 32
 todo-routing.module.ts
 ```
 import { NgModule } from '@angular/core';
@@ -136,7 +137,7 @@ app-navigation.component.html
 <hr>
 ```
 
-Slide 33:
+### Slide 33:
 todo-list.component.ts
 ```
 import { Component, OnInit } from '@angular/core';
@@ -170,7 +171,7 @@ todo-list.component.html
   </li>
 </ul>
 ```
-Slide 37
+### Slide 37
 todo-item.component.ts
 ```
 import { Component, OnInit } from '@angular/core';

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 // import modules
 import { TodoRoutingModule } from './todo-routing.module';
+import { ThirdPartyComponentsModule } from '../third-party-components/third-party-components.module';
 
 // import sevices
 import { TodoDataService } from './services/todo-data.service';
@@ -15,6 +16,7 @@ import { TodoItemComponent } from './components/todo-item/todo-item.component';
   declarations: [TodoListComponent, TodoItemComponent],
   imports: [
     CommonModule,
+    ThirdPartyComponentsModule,
     TodoRoutingModule
   ],
   providers: [
