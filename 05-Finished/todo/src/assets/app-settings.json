@@ -1,0 +1,6 @@
+{
+  "environment": "dev",
+  "apiUrl": "http://localhost:8080",
+  "jwtAttachDomains": ["localhost:8080"],
+  "jwtIgnoreRoutes": ["/v2/authentication/login"]
+}

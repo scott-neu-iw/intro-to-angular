@@ -1,260 +1,5 @@
-# Workshop 2 - Links and code snippets
-### Slide 6
-https://www.npmjs.com
-### Slide 7
-https://material.angular.io/guide/getting-started
-```
-npm install --save @angular/material @angular/cdk @angular/animations
-```
+# Workshop 3 - Components and Forms
 ### Slide 8
-https://material.angular.io/components/categories
-```
-import { NgModule } from '@angular/core';
-import { MatButtonModule, MatMenuModule, MatToolbarModule, MatIconModule,
-  MatCardModule, MatTableModule, MatSortModule, MatPaginatorModule,
-  MatCheckboxModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule,
-  MatInputModule, MatRadioModule, MatSelectModule } from '@angular/material';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-const MATERIAL_MODULES = [
-  MatButtonModule,
-  MatMenuModule,
-  MatToolbarModule,
-  MatIconModule,
-  MatCardModule,
-  MatTableModule,
-  MatSortModule,
-  MatPaginatorModule,
-  MatCheckboxModule,
-  MatFormFieldModule,
-  MatDatepickerModule,
-  MatNativeDateModule,
-  MatInputModule,
-  MatRadioModule,
-  MatSelectModule,
-  BrowserAnimationsModule
-];
-
-@NgModule({
-  imports: MATERIAL_MODULES,
-  exports: MATERIAL_MODULES
-})
-export class ThirdPartyComponentsModule { }
-```
-### Slide 10
-https://material.angular.io/guide/theming
-```
-styles.scss:
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-```
-```
-index.html:
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-```
-### Slide 11
-https://material.angular.io/components/toolbar/overview
-
-app-navigation.component.html
-```
-<mat-toolbar>
-  <mat-toolbar-row>
-    <a [routerLink]="['/']">Home</a> |
-    <a [routerLink]="['/todo']">Todo Items</a> |
-    {{ settings.environment }} |
-    {{ settings.apiUrl }}
-  </mat-toolbar-row>
-</mat-toolbar>
-```
-### Slide 13
-https://material.angular.io/components/table/overview
-
-todo-list.component.html:
-```
-<table mat-table [dataSource]="items" class="todo-list-datatable">
-  <!-- id Column -->
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef> ID </th>
-    <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-  </ng-container>
-
-  <!-- name Column -->
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let row"> {{row.name}} </td>
-  </ng-container>
-
-  <!-- description Column -->
-  <ng-container matColumnDef="description">
-    <th mat-header-cell *matHeaderCellDef> Description </th>
-    <td mat-cell *matCellDef="let row"> {{row.description}} </td>
-  </ng-container>
-
-  <!-- createDate Column -->
-  <ng-container matColumnDef="createDate">
-    <th mat-header-cell *matHeaderCellDef> Created On </th>
-    <td mat-cell *matCellDef="let row">{{row.createDate | date:'MM/dd/yyyy'}} </td>
-  </ng-container>
-
-  <!-- dueDate Column -->
-  <ng-container matColumnDef="dueDate">
-    <th mat-header-cell *matHeaderCellDef> Due Date </th>
-    <td mat-cell *matCellDef="let row">{{row.dueDate | date:'MM/dd/yyyy'}} </td>
-  </ng-container>
-
-  <!-- completedDate Column -->
-  <ng-container matColumnDef="completedDate">
-    <th mat-header-cell *matHeaderCellDef> Completed On </th>
-    <td mat-cell *matCellDef="let row"> {{row.completedDate | date:'MM/dd/yyyy'}} </td>
-  </ng-container>
-
-  <!-- isLate Column -->
-  <ng-container matColumnDef="isLate">
-    <th mat-header-cell *matHeaderCellDef> Is Late </th>
-    <td mat-cell *matCellDef="let row"> {{row.isLate}} </td>
-  </ng-container>
-
-  <!-- isPastDue Column -->
-  <ng-container matColumnDef="isPastDue">
-    <th mat-header-cell *matHeaderCellDef> Is Past Due </th>
-    <td mat-cell *matCellDef="let row"> {{row.isPastDue}} </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
-
-<div class="todo-list-items" *ngIf="items">Found {{ items.length }} items.</div>
-```
-### Slide 14
-todo-list.component.ts:
-```
-displayedColumns: string[] = ['id', 'name', 'description', 'createDate', 'dueDate', 'completedDate', 'isLate', 'isPastDue'];
-```
-### Slide 15
-todo-list.component.scss
-```
-table.todo-list-datatable {
-  width: 100%;
-
-  .mat-column-id {
-    width: 50px;
-  }
-
-  th.date-col,
-  td.date-col {
-    width: 150px;
-  }
-
-  th.bool-col,
-  td.bool-col {
-    width: 125px;
-  }
-}
-```
-### Slide 16
-todo-list.component.scss
-```
-  th.mat-header-cell {
-    background-color: #404040;
-    color:white;
-  }
-
-  tr.mat-row:hover {
-    background-color: #cce6ff;
-  }
-
-  tr.altRowStyle {
-    background-color: #f5f5f5;
-  }
-```
-todo-list.component.html
-```
-  <tr mat-row *matRowDef="let row; let oddRow = odd; columns: displayedColumns;"
-    [ngClass]="{altRowStyle:oddRow}"></tr>
-```
-### Slide 17
-todo-list.component.html
-```
-  <tr mat-row *matRowDef="let row; let oddRow = odd; columns: displayedColumns;"
-    [ngClass]="{altRowStyle:oddRow}" (click)="itemClicked(row)"></tr>
-
-```
-todo-list.component.ts
-```
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { TodoDataService } from '../../services/todo-data.service';
-import { TodoItem } from '../../models/todo-item.model';
-
-@Component({
-  templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.scss']
-})
-export class TodoListComponent implements OnInit {
-  constructor(private router: Router, private todoDataSvc: TodoDataService) { }
-
-  displayedColumns: string[] = ['id', 'name', 'description', 'createDate', 'dueDate', 'completedDate', 'isLate', 'isPastDue'];
-  items: Array<TodoItem>;
-
-  ngOnInit() {
-    this.todoDataSvc.getAll().subscribe(data => {
-      this.items = data;
-    });
-  }
-
-  public itemClicked(row: TodoItem) {
-    this.router.navigate(['/todo', row.id]);
-  }
-}
-```
-### Slide 19
-todo-list.component.ts
-```
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { MatTableDataSource, MatSort } from '@angular/material';
-import { TodoDataService } from '../../services/todo-data.service';
-import { TodoItem } from '../../models/todo-item.model';
-
-@Component({
-  templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.scss']
-})
-export class TodoListComponent implements OnInit {
-  constructor(private router: Router, private todoDataSvc: TodoDataService) { }
-
-  displayedColumns: string[] = ['id', 'name', 'description', 'createDate', 'dueDate', 'completedDate', 'isLate', 'isPastDue'];
-  items: MatTableDataSource<TodoItem>;
-
-  @ViewChild(MatSort) sort: MatSort;
-
-  ngOnInit() {
-    this.todoDataSvc.getAll().subscribe(data => {
-      this.items = new MatTableDataSource(data);
-      this.items.sort = this.sort;
-    });
-  }
-
-  public itemClicked(row: TodoItem) {
-    this.router.navigate(['/todo', row.id]);
-  }
-}
-
-```
-### Slide 20
-todo-list.component.html
-```
-<table mat-table matSort [dataSource]="items" class="todo-list-datatable">
-  <!-- id Column -->
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-    <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-  </ng-container>
-  
-  ...
-```
-
-### Slide ??
 todo-item-edit.component.ts
 ```
   @Input() item: TodoItem;
@@ -274,7 +19,7 @@ todo-item-edit.component.html
     <button mat-stroked-button (click)="cancel()">Cancel</button>
   </div>
 ```
-### 2b - Slide 9
+### Slide 9
 ```
   public edit() {
     this.isEditMode = true;
@@ -295,13 +40,13 @@ todo-item-edit.component.html
 <app-todo-item-edit *ngIf="isEditMode" [item]="item" (saved)="save($event)" (cancelled)="cancel()"></app-todo-item-edit>
 <div *ngIf="!isEditMode">
   <button mat-stroked-button color="primary" (click)="edit()">Edit</button>
-  <button mat-stroked-button [routerLink]="['/todo']">Back</button>
+  <button mat-stroked-button [routerLink]="['/todo']">&lt; Back</button>
 </div>
 ```
 ### 2b - Slide 12
 https://angular.io/guide/forms-overview
 ### 2b - Slide 13
-https://github.com/scott-neu-iw/angular-workshop/tree/master/02-Basics/Backend
+https://github.com/scott-neu-iw/intro-to-angular/tree/develop/Service
 
 todo-item-edit.component.ts
 ```
@@ -338,6 +83,35 @@ todo-item-edit.component.scss
 .input-container > * {
   width: 100%;
 }
+```
+### Slide 14
+todo-item-edit.html
+```
+<form #todoForm="ngForm">
+  <div class="input-container">
+    <mat-form-field>
+      <input matInput placeholder="Name"
+      id="name" name="name" [(ngModel)]="item.name">
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput placeholder="Description"
+      id="description" name="description" [(ngModel)]="item.description"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Assignee"
+      id="assignedTo" name="assignedTo" [(ngModel)]="item.assignedTo">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="dueDate"
+      id="dueDate" name="dueDate" placeholder="Due Date" [(ngModel)]="item.dueDate">
+      <mat-datepicker-toggle matSuffix [for]="dueDate"></mat-datepicker-toggle>
+      <mat-datepicker #dueDate></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div>
+    <button mat-stroked-button type="button" (click)="cancel()">Cancel</button>
+  </div>
+</form>
 ```
 ### Slide 16
 ```
@@ -391,11 +165,11 @@ return {
 todo-data.service.ts
 ```
 public add(item: TodoItemSave): Observable<TodoItem> {
-return this.httpClient.post<TodoItem>(this._baseUrl, item);
+return this.httpClient.post<TodoItem>(this.baseUrl, item);
 }
 
-public update(id: Number, item: TodoItemSave): Observable<TodoItem> {
-const url = `${this._baseUrl}/${id}`;
+public update(id: number, item: TodoItemSave): Observable<TodoItem> {
+const url = `${this.baseUrl}/${id}`;
 return this.httpClient.put<TodoItem>(url, item);
 }
 
