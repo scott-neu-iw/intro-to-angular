@@ -31,8 +31,8 @@ export class AppSettingsService {
 app-navigation.component.ts
 ```
 import { Component, OnInit } from '@angular/core';
-import { AppSettingsService } from 'src/app/core/services/app-settings.service';
-import { AppSettings } from 'src/app/core/models/app-settings.model';
+import { AppSettingsService } from '../../core/services/app-settings.service';
+import { AppSettings } from '../../core/models/app-settings.model';
 
 @Component({
   selector: 'app-app-navigation',
@@ -53,7 +53,7 @@ app-navigation.component.html
 ```
 <div>
   {{ settings.environment }} | {{ settings.apiUrl }}
-</div>>
+</div>
 <hr>
 ```
 ### Slide 27:
