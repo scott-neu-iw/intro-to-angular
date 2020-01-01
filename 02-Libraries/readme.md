@@ -4,9 +4,9 @@ https://www.npmjs.com
 ### Slide 7
 https://material.angular.io/guide/getting-started
 ```
-npm install --save @angular/material @angular/cdk @angular/animations
+ng add @angular/material
 ```
-### Slide 8
+### Slide 9
 https://material.angular.io/components/categories
 ```
 import { NgModule } from '@angular/core';
@@ -14,7 +14,6 @@ import { MatButtonModule, MatMenuModule, MatToolbarModule, MatIconModule,
   MatCardModule, MatTableModule, MatSortModule, MatPaginatorModule,
   MatCheckboxModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule,
   MatInputModule, MatRadioModule, MatSelectModule } from '@angular/material';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const MATERIAL_MODULES = [
   MatButtonModule,
@@ -31,8 +30,7 @@ const MATERIAL_MODULES = [
   MatNativeDateModule,
   MatInputModule,
   MatRadioModule,
-  MatSelectModule,
-  BrowserAnimationsModule
+  MatSelectModule
 ];
 
 @NgModule({
@@ -40,16 +38,6 @@ const MATERIAL_MODULES = [
   exports: MATERIAL_MODULES
 })
 export class ThirdPartyComponentsModule { }
-```
-### Slide 10
-https://material.angular.io/guide/theming
-```
-styles.scss:
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-```
-```
-index.html:
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 ```
 ### Slide 11
 https://material.angular.io/components/toolbar/overview
@@ -226,7 +214,7 @@ export class TodoListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'description', 'createDate', 'dueDate', 'completedDate', 'isLate', 'isPastDue'];
   items: MatTableDataSource<TodoItem>;
 
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort, null) sort: MatSort;
 
   ngOnInit() {
     this.todoDataSvc.getAll().subscribe(data => {

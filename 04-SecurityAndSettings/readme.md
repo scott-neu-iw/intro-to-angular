@@ -68,8 +68,8 @@ login.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { LoginRequest } from 'src/app/core/models/login-request.model';
-import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { LoginRequest } from '../../core/models/login-request.model';
+import { AuthenticationService } from '../../core/services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -206,11 +206,11 @@ export class AuthenticationService {
   private extractUser() {
     const decodedToken = this.jwtHelper.decodeToken(this.getLoginToken());
     const user: User = {
-      id: decodedToken['sub'],
-      email: decodedToken['email'],
-      firstName: decodedToken['given_name'],
-      lastName: decodedToken['family_name'],
-      roles: decodedToken['user_authorization'].split(',')
+      id: decodedToken.sub,
+      email: decodedToken.email,
+      firstName: decodedToken.given_name,
+      lastName: decodedToken.family_name,
+      roles: decodedToken.user_authorization.split(',')
     };
     this.currentUser = user;
   }
@@ -229,7 +229,7 @@ authentication.service.ts
 app-navigation.component.html
 ```
     <!-- This fills the remaining space of the current row -->
-    <span class="fill-remaining-sp-8ace"></span>
+    <span class="fill-remaining-space"></span>
 
     <a (click)="logoff()" href="javascript:void(0);">Logoff</a>
 
@@ -393,10 +393,9 @@ export class AuthenticatedInterceptor implements HttpInterceptor {
 app.module.ts
 ```
   providers: [
-    { provide: APP_INITIALIZER,
-      useFactory: appSettingsLoader,
-      deps: [AppSettingsService],
-      multi: true }
+    { provide: HTTP_INTERCEPTORS,
+      useClass: AuthenticatedInterceptor,
+      multi: true },
   ],
 ```
 ### Slide 34
