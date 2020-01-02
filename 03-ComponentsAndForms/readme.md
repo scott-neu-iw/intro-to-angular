@@ -148,12 +148,12 @@ set item(value: TodoItem) {
 ```
 private mapToSaveItem(value: TodoItem): TodoItemSave {
 return {
-  id: value.id,
-  name: value.name,
-  description: value.description,
-  dueDate: value.dueDate,
-  assignedTo: value.assignedTo,
-};
+    id: value.id,
+    name: value.name,
+    description: value.description,
+    dueDate: value.dueDate,
+    assignedTo: value.assignedTo,
+  };
 }
 ```
 ### Slide 20
@@ -165,11 +165,11 @@ return {
 todo-data.service.ts
 ```
 public add(item: TodoItemSave): Observable<TodoItem> {
-return this.httpClient.post<TodoItem>(this.baseUrl, item);
+  return this.httpClient.post<TodoItem>(this.baseUrl, item);
 }
 
 public update(id: number, item: TodoItemSave): Observable<TodoItem> {
-const url = `${this.baseUrl}/${id}`;
+    const url = `${this.baseUrl}/${id}`;
 return this.httpClient.put<TodoItem>(url, item);
 }
 
