@@ -12,12 +12,12 @@ const routes: Routes = [
       {
         path: '',
         component: TodoListComponent,
-        canActivate: [ IsLoggedInGuard ]
+        canActivate: [IsLoggedInGuard]
       },
       {
         path: ':id',
         component: TodoItemComponent,
-        canActivate: [ IsLoggedInGuard ]
+        canActivate: [IsLoggedInGuard]
       }
     ]
   }

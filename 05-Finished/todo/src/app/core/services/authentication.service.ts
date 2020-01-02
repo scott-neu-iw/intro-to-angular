@@ -13,8 +13,8 @@ import { User } from '../models/user.model';
 @Injectable()
 export class AuthenticationService {
   constructor(private httpClient: HttpClient,
-              private appSettingsSvc: AppSettingsService,
-              private router: Router) {
+              private router: Router,
+              private appSettingsSvc: AppSettingsService) {
                 this.jwtHelper = new JwtHelperService();
               }
 

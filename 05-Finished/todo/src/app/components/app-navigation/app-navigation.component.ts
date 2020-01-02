@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AppSettingsService } from 'src/app/core/services/app-settings.service';
-import { AppSettings } from 'src/app/core/models/app-settings.model';
-import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { AppSettingsService } from '../../core/services/app-settings.service';
+import { AppSettings } from '../../core/models/app-settings.model';
+import { AuthenticationService } from '../../core/services/authentication.service';
 
 @Component({
   selector: 'app-app-navigation',

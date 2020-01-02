@@ -13,4 +13,5 @@ export class TodoItemViewComponent implements OnInit {
 
   ngOnInit() {
   }
+
 }

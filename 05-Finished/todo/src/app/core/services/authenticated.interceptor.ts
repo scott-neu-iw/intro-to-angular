@@ -31,8 +31,8 @@ export class AuthenticatedInterceptor implements HttpInterceptor {
 
   /**
    * Determine if the domain is whitelisted
-   * @param request
-   * @param whitelistedDomains
+   * @param requestUrl the request
+   * @param whitelistedDomains whitelisted domains
    */
   private isWhitelistedDomain(requestUrl: UrlWithParsedQuery, whitelistedDomains: Array<string | RegExp>): boolean {
     return (
@@ -50,8 +50,8 @@ export class AuthenticatedInterceptor implements HttpInterceptor {
 
   /**
    * Determines if the route is backlisted
-   * @param request
-   * @param blacklistedRoutes
+   * @param requestUrl the request
+   * @param blacklistedRoutes blacklisted domains
    */
   private isBlacklistedRoute(requestUrl: UrlWithParsedQuery, blacklistedRoutes: Array<string | RegExp>): boolean {
     return (

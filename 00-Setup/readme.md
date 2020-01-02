@@ -16,9 +16,9 @@
 	npm install -g npm-windows-upgrade
 	npm-windows-upgrade
 ```
-3. Install Angular 7
+3. Install Angular 8
 	1. Open powershell as an Administrator
-	2. Type the following commands to install (7.3.2 is the version as of this document)
+	2. Type the following commands to install (8.3.21 is the version as of this document)
 ```
 TO INSTALL
 	npm install -g @angular/cli@latest
@@ -28,7 +28,7 @@ TO INSTALL
 TO UPDATE
 	npm uninstall -g @angular/cli
 	npm cache verify
-	# if npm version is < 5 then use `npm cache clean` 
+	# if npm version is < 5 then use `npm cache clean --force` 
 	npm install -g @angular/cli@latest
 ```
 4. Install Git (for pulling down completed examples)

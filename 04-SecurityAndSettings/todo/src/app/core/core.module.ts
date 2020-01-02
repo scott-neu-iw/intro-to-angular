@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { AppSettingsService } from './services/app-settings.service';
 
 @NgModule({
