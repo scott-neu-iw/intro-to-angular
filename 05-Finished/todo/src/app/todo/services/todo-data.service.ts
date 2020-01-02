@@ -23,10 +23,15 @@ export class TodoDataService {
 
   public add(item: TodoItemSave): Observable<TodoItem> {
     return this.httpClient.post<TodoItem>(this.baseUrl, item);
-    }
+  }
 
-    public update(id: number, item: TodoItemSave): Observable<TodoItem> {
+  public update(id: number, item: TodoItemSave): Observable<TodoItem> {
     const url = `${this.baseUrl}/${id}`;
     return this.httpClient.put<TodoItem>(url, item);
-    }
+  }
+
+  public delete(id: number): Observable<object> {
+    const url = `${this.baseUrl}/${id}`;
+    return this.httpClient.delete(url);
+  }
 }

@@ -68,8 +68,8 @@ login.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { LoginRequest } from 'src/app/core/models/login-request.model';
-import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { LoginRequest } from '../../core/models/login-request.model';
+import { AuthenticationService } from '../../core/services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -206,11 +206,11 @@ export class AuthenticationService {
   private extractUser() {
     const decodedToken = this.jwtHelper.decodeToken(this.getLoginToken());
     const user: User = {
-      id: decodedToken['sub'],
-      email: decodedToken['email'],
-      firstName: decodedToken['given_name'],
-      lastName: decodedToken['family_name'],
-      roles: decodedToken['user_authorization'].split(',')
+      id: decodedToken.sub,
+      email: decodedToken.email,
+      firstName: decodedToken.given_name,
+      lastName: decodedToken.family_name,
+      roles: decodedToken.user_authorization.split(',')
     };
     this.currentUser = user;
   }
@@ -229,7 +229,7 @@ authentication.service.ts
 app-navigation.component.html
 ```
     <!-- This fills the remaining space of the current row -->
-    <span class="fill-remaining-sp-8ace"></span>
+    <span class="fill-remaining-space"></span>
 
     <a (click)="logoff()" href="javascript:void(0);">Logoff</a>
 
@@ -309,7 +309,7 @@ export interface AppSettings {
 app-settings.service.ts
 ```
   constructor() {
-    this._settings = {
+    this.appSettings = {
       environment: 'dev',
       apiUrl: 'http://localhost:8080',
       jwtAttachDomains: ['localhost:8080'],
@@ -353,8 +353,8 @@ export class AuthenticatedInterceptor implements HttpInterceptor {
 
   /**
    * Determine if the domain is whitelisted
-   * @param request
-   * @param whitelistedDomains
+   * @param requestUrl the request
+   * @param whitelistedDomains whitelisted domains
    */
   private isWhitelistedDomain(requestUrl: UrlWithParsedQuery, whitelistedDomains: Array<string | RegExp>): boolean {
     return (
@@ -372,8 +372,8 @@ export class AuthenticatedInterceptor implements HttpInterceptor {
 
   /**
    * Determines if the route is backlisted
-   * @param request
-   * @param blacklistedRoutes
+   * @param requestUrl the request
+   * @param blacklistedRoutes blacklisted domains
    */
   private isBlacklistedRoute(requestUrl: UrlWithParsedQuery, blacklistedRoutes: Array<string | RegExp>): boolean {
     return (
@@ -388,15 +388,15 @@ export class AuthenticatedInterceptor implements HttpInterceptor {
     );
   }
 }
+
 ```
 ### Slide 31
 app.module.ts
 ```
   providers: [
-    { provide: APP_INITIALIZER,
-      useFactory: appSettingsLoader,
-      deps: [AppSettingsService],
-      multi: true }
+    { provide: HTTP_INTERCEPTORS,
+      useClass: AuthenticatedInterceptor,
+      multi: true },
   ],
 ```
 ### Slide 34
@@ -422,16 +422,16 @@ import { tap } from 'rxjs/operators';
 export class AppSettingsService {
   constructor(private http: HttpClient) { }
 
-  private _settings: AppSettings;
+  private appSettings: AppSettings;
   public get settings(): AppSettings {
-    return this._settings;
+    return this.appSettings;
   }
 
   public loadConfig(): Promise<AppSettings> {
     return this.http.get<AppSettings>('./assets/app-settings.json')
       .pipe(
         tap((config) => {
-          this._settings = config;
+          this.appSettings = config;
         })
       )
       .toPromise();

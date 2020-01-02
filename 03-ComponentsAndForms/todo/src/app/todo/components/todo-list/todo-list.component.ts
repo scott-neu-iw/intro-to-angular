@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatTableDataSource, MatSort } from '@angular/material';
 import { TodoDataService } from '../../services/todo-data.service';
 import { TodoItem } from '../../models/todo-item.model';
+import { MatTableDataSource, MatSort } from '@angular/material';
 
 @Component({
   templateUrl: './todo-list.component.html',
@@ -14,7 +14,7 @@ export class TodoListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'description', 'createDate', 'dueDate', 'completedDate', 'isLate', 'isPastDue'];
   items: MatTableDataSource<TodoItem>;
 
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort, null) sort: MatSort;
 
   ngOnInit() {
     this.todoDataSvc.getAll().subscribe(data => {

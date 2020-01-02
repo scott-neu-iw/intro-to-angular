@@ -14,17 +14,7 @@ export class TodoItemEditComponent implements OnInit {
   model: TodoItemSave;
   @Input()
   set item(value: TodoItem) {
-    if (value == null) {
-      this.model = {
-        id: 0,
-        name: '',
-        description: '',
-        assignedTo: '',
-        dueDate: null
-      };
-    } else {
-      this.model = this.mapToSaveItem(value);
-    }
+     this.model = this.mapToSaveItem(value);
   }
   @Output() cancelled = new EventEmitter<void>();
   @Output() saved = new EventEmitter<TodoItem>();
