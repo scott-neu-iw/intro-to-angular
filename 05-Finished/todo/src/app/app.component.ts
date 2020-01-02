@@ -7,7 +7,7 @@ import { AuthenticationService } from './core/services/authentication.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(public authService: AuthenticationService) {}
+  constructor(public authService: AuthenticationService) { }
 
   title = 'todo';
 }

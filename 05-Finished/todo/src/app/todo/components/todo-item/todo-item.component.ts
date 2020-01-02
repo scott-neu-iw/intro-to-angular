@@ -18,13 +18,23 @@ export class TodoItemComponent implements OnInit {
 
   itemId: number;
   item: TodoItem;
-  isEditMode: boolean;
+  isEditMode = false;
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.itemId = Number(params.id);
       if (this.itemId === 0) {
-        // add new item
+        this.item = {
+          id: 0,
+          name: '',
+          description: '',
+          assignedTo: '',
+          completed: false,
+          isLate: false,
+          isPastDue: false,
+          completedBy: '',
+          createDate: null,
+        };
         this.isEditMode = true;
       } else {
         this.todoDataSvc.get(this.itemId).subscribe(data => {
@@ -37,6 +47,12 @@ export class TodoItemComponent implements OnInit {
 
   public edit() {
     this.isEditMode = true;
+  }
+
+  public delete() {
+    this.todoDataSvc.delete(this.itemId).subscribe(() => {
+      this.router.navigate(['/todo']);
+    });
   }
 
   public cancel() {

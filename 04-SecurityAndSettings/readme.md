@@ -309,7 +309,7 @@ export interface AppSettings {
 app-settings.service.ts
 ```
   constructor() {
-    this._settings = {
+    this.appSettings = {
       environment: 'dev',
       apiUrl: 'http://localhost:8080',
       jwtAttachDomains: ['localhost:8080'],
@@ -353,8 +353,8 @@ export class AuthenticatedInterceptor implements HttpInterceptor {
 
   /**
    * Determine if the domain is whitelisted
-   * @param request
-   * @param whitelistedDomains
+   * @param requestUrl the request
+   * @param whitelistedDomains whitelisted domains
    */
   private isWhitelistedDomain(requestUrl: UrlWithParsedQuery, whitelistedDomains: Array<string | RegExp>): boolean {
     return (
@@ -372,8 +372,8 @@ export class AuthenticatedInterceptor implements HttpInterceptor {
 
   /**
    * Determines if the route is backlisted
-   * @param request
-   * @param blacklistedRoutes
+   * @param requestUrl the request
+   * @param blacklistedRoutes blacklisted domains
    */
   private isBlacklistedRoute(requestUrl: UrlWithParsedQuery, blacklistedRoutes: Array<string | RegExp>): boolean {
     return (
@@ -388,6 +388,7 @@ export class AuthenticatedInterceptor implements HttpInterceptor {
     );
   }
 }
+
 ```
 ### Slide 31
 app.module.ts
@@ -421,16 +422,16 @@ import { tap } from 'rxjs/operators';
 export class AppSettingsService {
   constructor(private http: HttpClient) { }
 
-  private _settings: AppSettings;
+  private appSettings: AppSettings;
   public get settings(): AppSettings {
-    return this._settings;
+    return this.appSettings;
   }
 
   public loadConfig(): Promise<AppSettings> {
     return this.http.get<AppSettings>('./assets/app-settings.json')
       .pipe(
         tap((config) => {
-          this._settings = config;
+          this.appSettings = config;
         })
       )
       .toPromise();
