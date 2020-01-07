@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule, MatMenuModule, MatToolbarModule, MatIconModule,
   MatCardModule, MatTableModule, MatSortModule, MatPaginatorModule,
   MatCheckboxModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule,
-  MatInputModule, MatRadioModule, MatSelectModule } from '@angular/material';
+  MatInputModule, MatRadioModule, MatSelectModule, MatGridList, MatGridTile } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const MATERIAL_MODULES = [
@@ -21,6 +21,8 @@ const MATERIAL_MODULES = [
   MatInputModule,
   MatRadioModule,
   MatSelectModule,
+  // MatGridList,
+  // MatGridTile,
   BrowserAnimationsModule
 ];
 
