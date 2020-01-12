@@ -1,8 +1,29 @@
 <div>
   <button mat-stroked-button color="primary" (click)="addItem()">Add Item</button>
+  <div class="item-filter">
+    <mat-form-field>
+      <input matInput  (keyup)="applyFilter($event.target.value)" placeholder="Filter Todo List">
+    </mat-form-field>
+  </div>
 </div>
 
 <table mat-table matSort [dataSource]="items" class="todo-list-datatable">
+  <!-- checkbox / select Column-->
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
   <!-- id Column -->
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
@@ -56,4 +77,6 @@
     [ngClass]="{altRowStyle:oddRow}" (click)="itemClicked(row)"></tr>
 </table>
 
-<div class="todo-list-items" *ngIf="items">Found {{ items.data.length }} items.</div>
+<mat-paginator [pageSizeOptions]="[3, 5, 10]" showFirstLastButtons></mat-paginator>
+
+<button mat-stroked-button (click)="actOnSelected()">Do Something with Selected</button>
