@@ -1,0 +1,22 @@
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-top: 15px;
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+
+.labelColumn {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-width: 150px;
+  font-weight: bold;
+}
+
+.descriptionColumn {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
