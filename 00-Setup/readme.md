@@ -35,7 +35,7 @@ TO UPDATE
     1. [Download](https://git-scm.com/downloads)
     2. Install
 5. Download dotnet core
-	1. [Download] https://dotnet.microsoft.com/download (minimum of 2.0)
+	1. [Download](https://dotnet.microsoft.com/download) (minimum of 2.0)
 	2. Install
 6. Clone the repository
 	1. From a powershell prompt, in the target directory
