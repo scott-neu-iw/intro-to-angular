@@ -21,7 +21,7 @@
 	2. Type the following commands to install (8.3.21 is the version as of this document)
 ```
 TO INSTALL
-	npm install -g @angular/cli@latest
+	npm install -g @angular/cli@8.3.21
 ```
 -OR-
 ```
@@ -29,7 +29,7 @@ TO UPDATE
 	npm uninstall -g @angular/cli
 	npm cache verify
 	# if npm version is < 5 then use `npm cache clean --force` 
-	npm install -g @angular/cli@latest
+	npm install -g @angular/cli@8.3.21
 ```
 4. Install Git (for pulling down completed examples)
     1. [Download](https://git-scm.com/downloads)
